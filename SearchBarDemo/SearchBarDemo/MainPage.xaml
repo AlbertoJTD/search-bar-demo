@@ -1,24 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SearchBarDemo.MainPage">
+             xmlns:autocomplete="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             x:Class="SearchBarDemo.MainPage"
+             BackgroundColor="#4086F5">
 
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <StackLayout.Padding>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="Android" Value="20,60,20,60" />
+                <On Platform="iOS" Value="20,40,20,60" />
+                <On Platform="UWP" Value="20,60,20,20" />
+            </OnPlatform>
+        </StackLayout.Padding>
+        <Frame Padding="20,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       HorizontalOptions="Start"
+                       Text="{StaticResource search}"
+                       FontFamily="fontello"
+                       VerticalOptions="Center"/>
+
+                <autocomplete:SfAutoComplete Grid.Column="1"
+                                             HorizontalOptions="FillAndExpand"
+                                             VerticalOptions="Center"
+                                             Watermark="Type here to search.."
+                                             ShowBorder="False"/>
+
+                <Label Grid.Column="2"
+                       HorizontalOptions="End"
+                       VerticalTextAlignment="Center"
+                       Text="{StaticResource microphone}"
+                       FontFamily="fontello"/>
+            </Grid>
         </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
     </StackLayout>
 
 </ContentPage>
